@@ -6,9 +6,15 @@
     <title>Dascorda Chat</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="loadServers()">
     <div class="chat-container">
         <h2>Welcome to the Dascorda Chat</h2>
+        <div>
+            <label for="server-select">Select Server:</label>
+            <select id="server-select">
+                <option value="" disabled selected>Select a server</option>
+            </select>
+        </div>
         <div id="server-creation">
             <h3>Create a Server</h3>
             <input type="text" id="server-name" placeholder="Server Name">
