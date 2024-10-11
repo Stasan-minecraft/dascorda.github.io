@@ -1,0 +1,2 @@
+server_id|server_name|user_count
+1|dascorda|1

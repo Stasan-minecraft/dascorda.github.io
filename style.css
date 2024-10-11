@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2C2F33;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container, .chat-container {
+    background-color: #23272A;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+.chat-window {
+    background-color: #2C2F33;
+    border: 1px solid #99AAB5;
+    height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#message-input, #server-name, #username-input, #password-input {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#send-button, #login-button, #create-server-button {
+    padding: 10px;
+    background-color: #7289DA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
