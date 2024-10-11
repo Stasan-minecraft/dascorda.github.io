@@ -1,4 +1,4 @@
-document.getElementById('login-button').addEventListener('click', loginUser);
+document.getElementById('login-button')?.addEventListener('click', loginUser);
 document.getElementById('register-submit-button')?.addEventListener('click', registerUser);
 document.getElementById('send-button')?.addEventListener('click', sendMessage);
 document.getElementById('create-server-button')?.addEventListener('click', createServer);
@@ -12,7 +12,7 @@ function loadServers() {
     fetch('servers.txt')
         .then(response => response.text())
         .then(data => {
-            const servers = data.trim().split('\\n').slice(1); // Ignore header
+            const servers = data.trim().split('\n').slice(1); // Ignore header
             const serverSelect = document.getElementById('server-select');
             servers.forEach(serverLine => {
                 const [serverId, serverName] = serverLine.split('|');
@@ -21,7 +21,8 @@ function loadServers() {
                 option.textContent = serverName;
                 serverSelect.appendChild(option);
             });
-        });
+        })
+        .catch(error => console.log('Error loading servers: ', error));
 }
 
 function loginUser() {
@@ -32,7 +33,7 @@ function loginUser() {
         fetch('users.txt')
             .then(response => response.text())
             .then(data => {
-                const users = data.trim().split('\\n').slice(1); // Ignore header line
+                const users = data.trim().split('\n').slice(1); // Ignore header line
                 let found = false;
                 users.forEach(userLine => {
                     const [userId, userName, userPassword, role, status] = userLine.split('|');
@@ -58,9 +59,9 @@ function registerUser() {
         fetch('users.txt')
             .then(response => response.text())
             .then(data => {
-                const users = data.trim().split('\\n');
+                const users = data.trim().split('\n');
                 const userId = users.length; // New user ID based on length
-                const newUser = `${userId}|${username}|${password}|user|online\\n`;
+                const newUser = `${userId}|${username}|${password}|user|online\n`;
 
                 // Update users.txt by simulating writing new user to file (in real-world projects, use a backend server)
                 const updatedUsers = data + newUser;
@@ -85,9 +86,9 @@ function createServer() {
         fetch('servers.txt')
             .then(response => response.text())
             .then(data => {
-                const servers = data.trim().split('\\n');
+                const servers = data.trim().split('\n');
                 const serverId = servers.length; // New server ID based on length
-                const newServer = `${serverId}|${serverName}\\n`;
+                const newServer = `${serverId}|${serverName}\n`;
                 
                 // Simulate adding new server to servers.txt
                 const updatedServers = data + newServer;
@@ -117,3 +118,6 @@ function sendMessage() {
 function saveMessageToFile(message) {
     console.log(`Message saved in ${currentServer}: ${message}`);
 }
+
+// Ensure servers are loaded when the page loads
+window.onload = loadServers;
